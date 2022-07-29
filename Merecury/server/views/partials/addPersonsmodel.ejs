@@ -1,0 +1,54 @@
+<div class="modal fade" id="addPersonsModel" aria-hidden="true" aria-labelledby="addPersonsModelLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addPersonsModelLabel">Add Film Person Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="addPersonsform" role="form" method="POST" action="/add/filmpersons">
+                <div class="row">
+                    <div class="form-group">
+                        <label class="control-label">Name</label>
+                        <div>
+                            <input type="text" class="form-control input-lg" name="name" value="">
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">Age</label>
+                            <div>
+                                <input type="number" class="form-control input-lg" name="age">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label class="control-label">Gender</label>
+                            <div>
+                                <input type="text" class="form-control input-lg" name="gender">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="form-group">
+                        <label class="control-label">Work Experience (in years)</label>
+                        <div>
+                            <input type="number" class="form-control input-lg" name="experience">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-shadow" data-bs-dismiss="modal">Clear</button>
+            <button type="submit" form="addPersonsform" class="btn btn-primary btn-success btn-shadow">Save</button>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,91 @@
+<div class="modal fade" id="editFilmModel" aria-hidden="true" aria-labelledby="editFilmModelLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-fullscreen-lg-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editFilmModelLabel">Edit Film Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="editFilmform" role="form" method="POST" action="/update/film/id=">
+                <div class="form-group">
+                    <label class="control-label">Movie Name</label>
+                    <div>
+                        <input id="editmoviename" type="text" class="form-control input-lg" name="editmoviename" value="" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Release year</label>
+                    <div>
+                        <input id="editmovieyear" type="number" class="form-control input-lg" name="editmovieyear" value="" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label for="MovieSynopsis" class="form-label">Synopsis</label>
+                    <div>
+                        <textarea id="editmovieSynopsis" class="form-control" name="editmovieSynopsis" rows="3" value="" required></textarea>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Genere</label>
+                    <div>
+                        <select id="editmoviegenere" placeholder="You can select upto 5 tags" name="editmoviegenere" multiple required></select>                         
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Audience Type</label>
+                    <div>
+                        <input id="editmovieaudtype" type="text" class="form-control input-lg" name="editmovieaudtype" value="" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Duration</label>
+                    <div>
+                        <input id="editmovieduration" type="text" class="form-control input-lg" name="editmovieduration" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Sub Film of:</label>
+                    <div>
+                        <select id="editmoviesuper" placeholder="You can select upto 5 tags" name="editmoviesuper">
+                            
+                        </select>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Film Persons</label>
+                        <div id="editfilmRolePerson_div">
+
+                        </div>
+                    </br>
+                    <div>
+                        <div class="row">
+                            <div class="col-1">
+                                <button type="button" class="btn btn-primary btn-shadow" onclick="createPersonsRolesselect('editfilmRolePerson_div');">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" id="editfilmRolePerson_div_minus_btn" class="btn btn-primary btn-shadow" onclick="deletePersonsRolesselect('editfilmRolePerson_div');" disabled>
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </br>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-shadow" data-bs-dismiss="modal">Clear</button>
+            <button type="submit" form="editFilmform" class="btn btn-primary  btn-success btn-shadow">Save</button>
+        </div>
+      </div>
+    </div>
+</div>

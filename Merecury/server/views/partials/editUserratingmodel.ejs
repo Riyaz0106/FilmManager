@@ -1,0 +1,50 @@
+<div class="modal fade" id="editReviewModel" aria-hidden="true" aria-labelledby="editReviewModelLabel" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-fullscreen-lg-down">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editFilmModelLabel">Edit Review</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form id="editReviewform" role="form" method="POST" action="/update/rating/name=<%=userData[0]["username"]%>?_method=PUT">
+            <input type="hidden" name="_method" value="PUT">
+              <div class="form-group">
+                  <label class="control-label">Name</label>
+                  <div>
+                      <input id="editfilmname" type="text" class="form-control input-lg" readonly name="editfilmname" value="">
+                  </div>
+              </div>
+              </br>
+              <div class="form-group">
+                  <label for="MovieReview" class="form-label">Review</label>
+                  <div>
+                      <textarea id="editmovieReview" class="form-control" name="editmovieReview" rows="3" value="" required></textarea>
+                  </div>
+              </div>
+              </br>
+              <div class="form-group">
+                <label for="rate">Rate</label>
+                </br>
+                <div class="stars">
+                    <input class="star star-5" id="star-5" type="radio" name="star" value="5"/> 
+                    <label class="star star-5" for="star-5"></label> 
+                    <input class="star star-4" id="star-4" type="radio" name="star" value="4" /> 
+                    <label class="star star-4" for="star-4"></label> 
+                    <input class="star star-3" id="star-3" type="radio" name="star" value="3" /> 
+                    <label class="star star-3" for="star-3"></label> 
+                    <input class="star star-2" id="star-2" type="radio" name="star" value="2" /> 
+                    <label class="star star-2" for="star-2"></label> 
+                    <input class="star star-1" id="star-1" type="radio" name="star" value="1" /> 
+                    <label class="star star-1" for="star-1"></label>
+                </div>
+            </div>
+            </br>
+          </form>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-shadow" data-bs-dismiss="modal">Clear</button>
+          <button type="submit" form="editReviewform" class="btn btn-primary  btn-success btn-shadow">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

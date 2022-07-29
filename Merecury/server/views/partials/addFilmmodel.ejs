@@ -1,0 +1,109 @@
+<div class="modal fade" id="addFilmModel" aria-hidden="true" aria-labelledby="addFilmModelLabel" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg modal-fullscreen-lg-down">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addFilmModelLabel">Add Film Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form id="addFilmform" role="form" method="POST" action="/add/film">
+                <div class="form-group">
+                    <label class="control-label">Movie Name</label>
+                    <div>
+                        <input type="text" class="form-control input-lg" name="moviename" value="" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Release year</label>
+                    <div>
+                        <input type="number" class="form-control input-lg" name="movieyear" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label for="MovieSynopsis" class="form-label">Synopsis</label>
+                    <div>
+                        <textarea class="form-control" name="movieSynopsis" rows="3" required></textarea>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Genere</label>
+                    <div>
+                        <select id="moviegenere" placeholder="You can select upto 5 tags" name="moviegenere" multiple required>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Crime & Mystery">Crime & Mystery</option>
+                            <option value="Horrer">Horrer</option>
+                            <option value="Documentry">Documentry</option>
+                            <option value="Sci-Fi">Sci-Fi</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Historical">Historical</option>
+                            <option value="Action">Action</option>
+                            <option value="Thriller">Thriller</option>
+                            <option value="Animation">Animation</option>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Strategy">Strategy</option>
+                        </select>                         
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Audience Type</label>
+                    <div>
+                        <input type="text" class="form-control input-lg" name="movieaudtype" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Duration</label>
+                    <div>
+                        <input type="text" class="form-control input-lg" name="movieduration" required>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Sub Film of:</label>
+                    <div>
+                        <select id="moviesuper" placeholder="You can select upto 5 tags" name="moviesuper" required>
+                            <option value="0" selected disabled>Select one Film</option>
+                            <% filmData1.forEach(function(row){ %>
+                                <option value="<%=row["id"]%>"><%=row["name"]%></option>
+                            <%})%> 
+                        </select>
+                    </div>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label class="control-label">Film Persons</label>
+                        <div id="addfilmRolePerson_div">
+
+                        </div>
+                    </br>
+                    <div>
+                        <div class="row">
+                            <div class="col-1">
+                                <button type="button" class="btn btn-primary btn-shadow" onclick="createPersonsRolesselect('addfilmRolePerson_div');">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </div>
+                            <div class="col-1">
+                                <button type="button" id="addfilmRolePerson_div_minus_btn" class="btn btn-primary btn-shadow" onclick="deletePersonsRolesselect('addfilmRolePerson_div');" disabled>
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </br>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-shadow" data-bs-dismiss="modal">Clear</button>
+            <button type="submit" form="addFilmform" class="btn btn-primary  btn-success btn-shadow">Save</button>
+        </div>
+      </div>
+    </div>
+</div>

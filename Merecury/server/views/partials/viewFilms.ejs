@@ -1,0 +1,42 @@
+<div class="row row-cols-auto">
+    <% filmData.forEach(function(row){ %>
+      <div class="col">
+        <!--Film Cards-->
+          <div class="card btn-shadow bg-dark"  >
+            <div class="card-header">
+              <a href="https://i.ibb.co/qmPV3Rk/no-poster.png">
+                <img src="https://i.ibb.co/qmPV3Rk/no-poster.png" style="height:20rem; width:15.3rem; " class="img-fluid rounded-start" alt="no-poster" border="0">
+              </a>
+            </div>
+            <div class="card-body">
+              <a href='/get/film/id=<%=row["id"]%>' class="text-decoration-none">
+                <h5 class="card-title text-white" style="white-space: nowrap; width: 15.3rem; overflow: hidden; text-overflow: ellipsis; "><%= row["name"] %></h5>
+                <p class="card-text text-white"><%= row["releaseyear"] %></p>
+              </a>
+              <p class="card-text text-white"><%= row["duration"] %></p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <div class="row">
+                <div class="col-auto me-auto">
+
+                  <button type="submit" class="btn btn-warning btn-shadow" onclick='changeEditUrl(`<%= row["id"] %>`,[`<%=row["name"]%>`, `<%=row["releaseyear"]%>`, `<%=row["description"]%>`, 
+                  `<%=row["audiencetype"]%>`, `<%=row["genere"]%>`, `<%=row["duration"]%>`, `<%=row["selectedpersons"]%>`,`<%=row["selectedroles"]%>`,`<%=row["dropdown"]%>`]);' 
+                          data-bs-target="#editFilmModel" data-bs-toggle="modal">
+                    <span class="fa fa-edit"></span> Edit
+                  </button>
+                </div>
+                <div class="col-auto">
+                  <form method="post" action='/delete/film/id=<%=row["id"]%>?_method=DELETE'>
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="btn btn-danger btn-shadow">
+                      <span class="fa fa-trash"></span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          </br>
+      </div>
+    <% }) %>
+  </div>

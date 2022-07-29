@@ -1,0 +1,38 @@
+<div class="card btn-shadow text-white bg-dark mb-3" style="max-width:35rem;">
+    <div class="card-body">
+        <form id="addratingfrom" role="form" method="POST" action="/add/rating/id=<%=filmData1[0]["id"]%>">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username" name="username" required>
+                </div>
+                </br>
+                <div class="form-group">
+                    <label for="rate">Rate</label>
+                    </br>
+                    <div class="stars">
+                        <input class="star star-5" id="star-5" type="radio" name="star" value="5"/> 
+                        <label class="star star-5" for="star-5"></label> 
+                        <input class="star star-4" id="star-4" type="radio" name="star" value="4" /> 
+                        <label class="star star-4" for="star-4"></label> 
+                        <input class="star star-3" id="star-3" type="radio" name="star" value="3" /> 
+                        <label class="star star-3" for="star-3"></label> 
+                        <input class="star star-2" id="star-2" type="radio" name="star" value="2" /> 
+                        <label class="star star-2" for="star-2"></label> 
+                        <input class="star star-1" id="star-1" type="radio" name="star" value="1" /> 
+                        <label class="star star-1" for="star-1"></label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="MovieReview" class="form-label">Review</label>
+                    <div>
+                        <textarea class="form-control not-resizable" name="movieReview" rows="5" required></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="submit" form="addratingfrom" class="btn btn-success btn-shadow" onclick='document.getElementById("ratingcard").style.display = "none";'>Save</button>
+    </div>
+  </div>

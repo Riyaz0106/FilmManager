@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--Header-->
+    <%- include('../include/header') %> 
+    
+      <title>Film Related Person Page</title>
+        <!--===============================================================================================-->
+          <link rel="stylesheet" type="text/css" href="../../dist/vendor/perfect-scrollbar/perfect-scrollbar.css">
+        <!--===============================================================================================-->
+          <link rel="stylesheet" type="text/css" href="../../dist/css/main.css">
+        <!--===============================================================================================-->
+  </head>
+  <body>
+    <div id="page-container">
+      <div id="content-wrap">
+        <!-- Top Navigation Bar -->
+        <%- include('../partials/navbar') %>
+        </br>
+
+        <div class="container-fluid">
+          <!-- Add Film Person Model-->
+          <%- include('../partials/addPersonsmodel') %>
+          <!-- Add Film Person Button -->
+          <button type="submit" class="btn btn-primary btn-shadow" data-bs-target="#addPersonsModel" data-bs-toggle="modal">
+            <span class="fa fa-plus"></span> Add Persons
+          </button>
+        </div>
+        </br>
+        <div class="container-fluid">
+          <div class="table100 ver3 m-b-110">
+            <div class="table100-head">
+              <table>
+                <thead>
+                  <tr class="row100 head">
+                    <th class="cell100 column0">#</th>
+                    <th class="cell100 column1">Name</th>
+                    <th class="cell100 column2">Age</th>
+                    <th class="cell100 column3">Gender</th>
+                    <th class="cell100 column4">Years of experience</th>
+                    <th class="cell100" style="text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+            <div class="table100-body js-pscroll">
+              <table>
+                <tbody>
+                  <% var i=1; filmData.forEach(function(row){%>
+                  <tr class="row100 body">
+                    <td class="cell100 column0"><%=i%></td>
+                    <td class="cell100 column1"><%=row["name"]%></td>
+                    <td class="cell100 column2"> <%=row["age"]%></td>
+                    <td class="cell100 column3"><%=row["sex"]%></td>
+                    <td class="cell100 column4"><%=row["experience"]%></td>
+                    <td class="cell100">
+                      <!-- Edit Film Model-->
+                      <%- include('../partials/editPersonsModel') %>
+                      <button type="submit" class="btn btn-warning btn-shadow" onclick='changeEditUrl(`<%= row["id"] %>`,[`<%=row["name"]%>`, `<%=row["age"]%>`, `<%=row["sex"]%>`, `<%=row["experience"]%>`]);' 
+                              data-bs-target="#editPersonsModel" data-bs-toggle="modal">
+                        <span class="fa fa-edit"></span>
+                      </button>
+                    </td>
+                    <td class="cell100">
+                      <form method="post" action='/delete/filmpersons/id=<%=row["id"]%>?_method=DELETE'>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger btn-shadow">
+                          <span class="fa fa-trash"></span>
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                  <% i+=1;}) %> 
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        </br>
+      </div>
+      <!--Footer-->
+      <%- include('../include/footer') %> 
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="../../dist/vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script>
+
+      window.onload = function(){
+        document.getElementById('linkaccount').className = 'nav-link';
+        document.getElementById('linkhome').className = 'nav-link';
+        document.getElementById('linkfilmperson').className = 'nav-link active';
+      }
+
+      $('.js-pscroll').each(function(){
+        var ps = new PerfectScrollbar(this);
+  
+        $(window).on('resize', function(){
+          ps.update();
+        })
+      });
+        
+      function changeEditUrl(id, persons_arr){
+        var form = document.getElementById('editPersonsform');
+        var action = '/update/filmpersons/id='
+        form.setAttribute("action", action+id+'?_method=PUT');
+
+        document.getElementById('editpersonname').value = persons_arr[0];
+        document.getElementById('editpersonage').value = persons_arr[1];
+        document.getElementById('editpersongender').value = persons_arr[2];
+        document.getElementById('editpersonexperience').value = persons_arr[3];
+
+      };
+      
+    </script>
+    <!--===============================================================================================-->
+    <script src="../../dist/js/main.js"></script>
+  </body>
+</html>

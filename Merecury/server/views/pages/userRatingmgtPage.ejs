@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--Header-->
+    <%- include('../include/header') %> 
+    <title>User Raying Page</title>
+
+    <link rel="stylesheet" type="text/css" href="../../dist/css/main.css">
+    <!--===============================================================================================-->
+    <style>
+      .checked {
+          color: orange;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="page-container">
+      <div id="content-wrap">
+        <!-- Top Navigation Bar -->
+          <%- include('../partials/navbar') %>
+        </br>
+        
+        <div class="container-fluid">
+          <h5 class="text-white">
+            Hello User, <%=username%>
+          </h5>
+          </br>
+          <div class="row row-auto">
+            <div class="col-6" style="border-right:1px solid #000;height:auto;" >
+              <h5 style="color: beige;">Film Ratings:</h5></br>
+              <%if(userData.length != 0){%>
+                <%userData.forEach(function(row){%>
+                  <div class="card mb-3">
+                    <div class="row g-0">
+                      <div class="col-md-2">
+                        <a href="https://i.ibb.co/qmPV3Rk/no-poster.png">
+                          <img src="https://i.ibb.co/qmPV3Rk/no-poster.png" class="img-fluid rounded-start" alt="no-poster" border="0">
+                        </a>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%=row["filmname"]%></h5>
+                          <p class="card-text" style="font-style: italic;">"<%=row["review"]%>"</p>
+                          <p>
+                            <% var no_star_checked = row["rating"];%>
+                            <% var no_star_no_checked = 5-no_star_checked;%>
+                            <% for (let index = 0; index < no_star_checked; index++) {%>
+                                <span class="fa fa-star checked"></span>
+                            <%}%>
+                            <% for (let index = 0; index < no_star_no_checked; index++) {%>
+                                <span class="fa fa-star"></span>
+                            <%}%>
+                          </p>
+                          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <!-- Edit Ratings Model-->
+                        <%- include('../partials/editUserratingmodel'); %>
+                        <div class="row g-0">
+                          <button type="submit"  style="width: 2.5rem;" class="btn btn-warning btn-shadow position-absolute top-0 end-0" onclick='changeEditUrl([`<%=row["filmname"]%>`, `<%=row["rating"]%>`,`<%=row["review"]%>`])' data-bs-target="#editReviewModel" data-bs-toggle="modal">
+                            <span class="fa fa-edit"></span>
+                          </button>
+                        </div>
+                        </br>
+                        <div class="row g-0">
+                          <form method="post" action='/delete/rating/filmname=<%=row["filmname"]%>/name=<%=row["username"]%>?_method=DELETE'>
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-danger btn-shadow position-absolute bottom-0 end-0">
+                              <span class="fa fa-trash"></span>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </br>
+              <%})%>
+            <%}else{%>
+              <center><h6 style="color: black;">No ratings Available</h6></center>
+            <%}%>
+          </div>
+          <div class="col-6" >
+            <h5 style="color: beige;">Film Suggestions:</h5></br>
+            <div class="row g-2">
+              <%if(suggestFilmData.length != 0){%>
+                <%suggestFilmData.forEach(function(row){%>
+                  <div class="col-md-6">
+                    <div class="card text-white bg-dark btn-shadow" style="height: 12rem;">
+                      <div class="card-body">
+                        <h5 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; "><%=row["name"]%></h5>
+                        <h6 class="card-subtitle mb-2 text-muted"><%=row["releaseyear"]%></h6>
+                        <p class="card-text"><%=row["duration"]%></p></br></br>
+                        <a href='/get/film/id=<%=row["id"]%>' class="btn btn-shadow btn-primary btn-sm" role="button" style="text-decoration: none;"><span class="fa fa-eye"></span></a>
+                      </div>
+                    </div>
+                    <br>
+                  </div>
+                <%})%>
+              <%}else{%>
+                <center><h6 style="color: black;">No Suggestions Available</h6></center>
+              <%}%>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div>
+        </div>
+      </div>
+      <!--Footer-->
+      <%- include('../include/footer') %> 
+    </div>
+    
+    <script text=javascript>
+      window.onload = function(){
+        document.getElementById("logoutform").hidden = false;
+        document.getElementById('linkaccount').className = 'nav-link active';
+        document.getElementById('linkhome').className = 'nav-link';
+        document.getElementById('linkfilmperson').className = 'nav-link';
+      }
+
+      function changeEditUrl(user){
+        document.getElementById("editfilmname").value = user[0];
+        document.getElementById("editmovieReview").value = user[2];
+        document.getElementById("star-"+user[1]).checked = true;
+      }
+    </script>
+  </body>
+</html>

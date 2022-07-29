@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!--Header-->
+    <%- include('../include/header') %> 
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="../../dist/css/main.css">
+        <!--===============================================================================================-->
+  </head>
+  <body>
+    <div id="page-container">
+      <div id="content-wrap">
+          <!-- Top Navigation Bar -->
+          <%- include('../partials/navbar') %>
+        </br>
+        
+        <div class="container-fluid">
+          <!-- Add Film Model-->
+          <%- include('../partials/addFilmmodel') %>
+          <!-- Add Film Button -->
+          <button type="submit" class="btn btn-primary btn-shadow" data-bs-target="#addFilmModel" data-bs-toggle="modal">
+            <span class="fa fa-plus"></span> Add Film
+          </button>
+        </div>
+        </br>
+
+        <div class="container-fluid">
+          <!-- View Films-->
+          <%- include('../partials/viewFilms') %>
+        </div>
+
+        <!-- Edit Film Model-->
+        <%- include('../partials/editFilmmodel'); %>
+      </div>
+      <!--Footer-->
+      <%- include('../include/footer') %> 
+    </div>
+
+    <script text="javascript">
+      let editgenereChoices;
+      let editsupermoviechoices;
+      let addflag = 0;
+      let editflag = 0;
+      let persons_arr = '<%=filmData[0]["persons"]%>';
+      let roles_arr = '<%=filmData[0]["roles"]%>';
+      // let allmoviesnames =[];
+      window.onload = function(){
+
+        var multiplegeneres = new Choices('#moviegenere', {
+          removeItemButton: true,
+          maxItemCount:5,
+          searchResultLimit:5
+        });
+
+        editgenereChoices = new Choices('#editmoviegenere', {
+          removeItemButton: true,
+          maxItemCount:5,
+          searchResultLimit:5
+        });
+
+        var addsupermoviechoices = new Choices('#moviesuper', {
+          removeItemButton: true,
+          maxItemCount:5,
+          searchResultLimit:5
+        });
+
+        editsupermoviechoices = new Choices('#editmoviesuper', {
+          maxItemCount:5,
+          searchResultLimit:5
+        });
+
+        document.getElementById('linkaccount').className = 'nav-link';
+        document.getElementById('linkhome').className = 'nav-link active';
+        document.getElementById('linkfilmperson').className = 'nav-link';
+
+      };
+        
+      function changeEditUrl(id, movie_arr){
+        var form = document.getElementById('editFilmform');
+        var action = '/update/film/id='
+        form.setAttribute("action", action+id);
+
+        setfilmData(movie_arr, editgenereChoices, editsupermoviechoices, ["0"]);
+      };
+
+      var myModalEl = document.getElementById('editFilmModel')
+      myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        var select_div =  document.getElementById("editfilmRolePerson_div");
+        select_div.replaceChildren();
+        editflag = 0;
+      });
+
+      myModalEl = document.getElementById('addFilmModel')
+      myModalEl.addEventListener('hidden.bs.modal', function (event) {
+        var select_div =  document.getElementById("addfilmRolePerson_div");
+        select_div.replaceChildren();
+        addflag = 0;
+      });
+
+      navbar = document.getElementById('topheader')
+      navbar.addEventListener(onclick,function (params) {
+        $( '#topheader .navbar-nav' ).find( 'li.active' )
+            .removeClass( 'active' );
+            $( this ).parent( 'li' ).addClass( 'active' );
+      });
+      
+    </script>
+
+    <script src="../../dist/js/choices_create.js"></script>
+  </body>
+</html>
